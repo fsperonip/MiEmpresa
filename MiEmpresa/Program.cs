@@ -1,34 +1,48 @@
-var builder = WebApplication.CreateBuilder(args);
+Conexiones.Conexiones.ConfigurarEntorno("");
+//try
+//{
 
-// Add services to the container.
+    var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+    // Add services to the container.
 
-// Configure the HTTP request pipeline.
+    builder.Services.AddControllers();
 
-app.UseHttpsRedirection();
+    //Action filter home!
+    //builder.Services.AddControllersWithViews(options =>
+    //{
+    //    options.Filters.Add<LibGenerica.InformationApiFilter>();
+    //});
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    //builder.Services.AddCors(p => p.AddDefaultPolicy(build =>
+    //{
+    //    build.WithOrigins("https://democratest.com/", "https://blue-flower-0ebcc9703.2.azurestaticapps.net", "https://zealous-coast-060dacf03.2.azurestaticapps.net");
+    //    build.AllowAnyMethod();
+    //    build.AllowAnyHeader();
+    //}));
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+    var app = builder.Build();
 
-app.Run();
+    //Home para api!
+    app.MapGet("/", () => Results.Redirect("/noKey"));
+    app.MapGet("/{key}", (string key) =>
+    {
+        if (key == Conexiones.Conexiones.apiKey)
+            return "Authorized!";
+        else
+            return "Unauthorized!";
+    });
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+    // Configure the HTTP request pipeline.
+
+    app.UseHttpsRedirection();
+
+    app.UseCors();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+//}
+//catch (Exception ex) { Herramientas.RequestTelemetryHelper.TrackException(ex); }
