@@ -1,4 +1,5 @@
 ﻿using Conexiones;
+using Herramientas;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
@@ -13,8 +14,18 @@ namespace MiEmpresa.Controllers
         [HttpGet("Prueba/{id}")]
         public async Task<string> Prueba(string id)
         {
+            string apiKey = "YXV0aDB8NjQ2ZDM1OWFhMjkzNTA1MDA1ZjljNjZhfDQ0NjE3M2U2Yjk";
+            OutscraperHelper outscraper = new OutscraperHelper(apiKey);
+
             try
             {
+                string url = "https://www.amazon.com/dp/1612680194";
+                int limit = 3;
+                bool async = false;
+
+                string response = await outscraper.GetAmazonReviews(url, limit, async);
+                //Console.WriteLine(response);
+            
                 var messages = new List<dynamic>
                                 {
                                     new {role = "system",
@@ -27,6 +38,7 @@ namespace MiEmpresa.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Error: {ex.Message}");
                 //RequestTelemetryHelper.TrackException(ex, new() { 
                 //    { "idProduct", idProduct } 
                 //});
