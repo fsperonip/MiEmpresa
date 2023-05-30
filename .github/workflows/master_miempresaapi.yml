@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'MiEmpresaApi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D222AA61A2514B33909CB94118B8FF8C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_222EB7D97A0747C3A1B6BCF5D672B83A }}
           package: .
