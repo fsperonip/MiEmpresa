@@ -9,7 +9,7 @@ namespace Herramientas
 {
     public static class ChatGptHelper
     {
-        const string key = "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";
+        const string key = "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";
         const string url = "https://api.openai.com/v1/chat/completions";
 
         public static async Task<dynamic> SendMessages(List<dynamic> messages)
@@ -35,7 +35,8 @@ namespace Herramientas
                 error = new { message = string.Empty }
             });
 
-            //No cotrolo los errores, si da error que se capture fuera!
+
+            ////No cotrolo los errores, si da error que se capture fuera!
             //if (!string.IsNullOrEmpty(responseObject?.error?.message))  // Check for errors
             //{
             //    return responseObject?.error.message;
@@ -44,7 +45,7 @@ namespace Herramientas
             //{
             var messageObject = responseObject?.choices[0].message;
 
-            return messageObject.content;
+                return messageObject.content;
             //}
 
 
