@@ -9,7 +9,7 @@ namespace Herramientas
 {
     public static class ChatGptHelper
     {
-        const string key = "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";
+        const string key = "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";
         const string url = "https://api.openai.com/v1/chat/completions";
 
         public static async Task<dynamic> SendMessages(List<dynamic> messages)

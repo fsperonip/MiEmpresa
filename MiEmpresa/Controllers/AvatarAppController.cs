@@ -23,10 +23,11 @@ namespace MiEmpresa.Controllers
             try
             {
                 //string url = "B01MSBZYQW";//"https://www.amazon.com/dp/1612680194";
-                int limit = 15;
+                int limit = 5;
                 bool async = false;
 
                 string jsonString = await outscraper.GetAmazonReviews(asin, limit, async);
+                //return JsonHelper.Object2Json(jsonString);
                 JObject jsonObject = JObject.Parse(jsonString);
                 List<string> bodyList = new List<string>();
 
