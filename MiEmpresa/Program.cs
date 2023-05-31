@@ -8,20 +8,20 @@ Conexiones.Conexiones.ConfigurarEntorno("");
 
     builder.Services.AddControllers();
 
-    //Action filter home!
-    //builder.Services.AddControllersWithViews(options =>
-    //{
-    //    options.Filters.Add<LibGenerica.InformationApiFilter>();
-    //});
+//Action filter home!
+//builder.Services.AddControllersWithViews(options =>
+//{
+//    options.Filters.Add<LibGenerica.InformationApiFilter>();
+//});
 
-    //builder.Services.AddCors(p => p.AddDefaultPolicy(build =>
-    //{
-    //    build.WithOrigins("https://democratest.com/", "https://blue-flower-0ebcc9703.2.azurestaticapps.net", "https://zealous-coast-060dacf03.2.azurestaticapps.net");
-    //    build.AllowAnyMethod();
-    //    build.AllowAnyHeader();
-    //}));
+builder.Services.AddCors(p => p.AddDefaultPolicy(build =>
+{
+    build.WithOrigins("https://salmon-sand-00f744b10.3.azurestaticapps.net/");
+    build.AllowAnyMethod();
+    build.AllowAnyHeader();
+}));
 
-    var app = builder.Build();
+var app = builder.Build();
 
     //Home para api!
     app.MapGet("/", () => Results.Redirect("/noKey"));

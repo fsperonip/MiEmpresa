@@ -23,7 +23,7 @@ namespace MiEmpresa.Controllers
             try
             {
                 //string url = "B01MSBZYQW";//"https://www.amazon.com/dp/1612680194";
-                int limit = 5;
+                int limit = 10;
                 bool async = false;
 
                 string jsonString = await outscraper.GetAmazonReviews(asin, limit, async);
@@ -57,7 +57,7 @@ namespace MiEmpresa.Controllers
                 {
                     role = "user",
                     //content = "Generar Avatar de Comprador\n\nInstrucciones: Por favor, genera un avatar de comprador basado en las reseñas que te di\n\nUtiliza la información de las reseñas para inferir las características y preferencias del comprador y describe su avatar teniendo en cuenta los productos mencionados. Ten en cuenta que es posible que debas hacer suposiciones basadas en la información limitada de las reseñas.\n\nGenera un avatar de comprador que se ajuste a estas suposiciones y describe sus características y preferencias principales.\n\nDetallame cantidad de reseñas utilizadas para realizar el avatar"
-                    content = "Generar Avatar de Comprador\n\nInstrucciones: Por favor, genera un avatar de comprador basado en las reseñas que te di\n\nUtiliza la información de las reseñas para inferir las características y preferencias del comprador y describe su avatar teniendo en cuenta los productos mencionados. Ten en cuenta que es posible que debas hacer suposiciones basadas en la información limitada de las reseñas.\n\nGenera un avatar de comprador que se ajuste a estas suposiciones y describe sus características y preferencias principales."
+                    content = "Generame un perfil detallado de un Buyer Persona en base a las reeñas que te di. Esto debe incluir:\r\n\r\nInformación demográfica: Edad, género, ubicación, nivel de educación, ocupación, nivel de ingresos, estado civil y detalles familiares.\r\n\r\nInformación psicográfica: Intereses, actividades, opiniones, valores, actitudes y estilo de vida.\r\n\r\nProblemas y desafíos que enfrenta esta persona: ¿Cuáles son los principales obstáculos externos e internos que enfrenta en su vida diaria y en su trabajo? ¿Qué problemas específicos tiene que resolver? ¿Qué miedos o preocupaciones internas le quitan el sueño por la noche?\r\n\r\nProceso de toma de decisiones: ¿Cómo toma decisiones esta persona, particularmente en lo que respecta a las compras? ¿Qué factores considera antes de realizar una compra? ¿Cuáles son sus fuentes de información y cómo busca y evalúa las opciones disponibles?\r\n\r\nNecesidades y deseos: ¿Qué es lo que esta persona realmente necesita y desea? ¿Cómo podrían estas necesidades y deseos estar relacionados con los productos o servicios que se le pueden ofrecer?\r\n\r\nFrustraciones: ¿Qué cosas ha probado y no han funcionado?"
                 });
                 var mensaje = await Herramientas.ChatGptHelper.SendMessages(messages);
                 return mensaje.ToString();
