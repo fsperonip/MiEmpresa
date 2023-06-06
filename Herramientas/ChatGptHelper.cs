@@ -9,7 +9,7 @@ namespace Herramientas
 {
     public static class ChatGptHelper
     {
-        const string key = "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";
+        const string key = "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";
         const string url = "https://api.openai.com/v1/chat/completions";
 
         public static async Task<dynamic> SendMessages(List<dynamic> messages)
@@ -18,7 +18,7 @@ namespace Herramientas
             {
                 messages,
                 model = "gpt-3.5-turbo",
-                max_tokens = 500,
+                max_tokens = 2000,
                 temperature = 0.5
             };
 

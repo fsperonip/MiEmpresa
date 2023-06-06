@@ -14,11 +14,16 @@ Conexiones.Conexiones.ConfigurarEntorno("");
 //    options.Filters.Add<LibGenerica.InformationApiFilter>();
 //});
 
-builder.Services.AddCors(p => p.AddDefaultPolicy(build =>
+//builder.Services.AddCors(p => p.AddDefaultPolicy(build =>
+//{
+//    build.WithOrigins("https://salmon-sand-00f744b10.3.azurestaticapps.net/");
+//    build.AllowAnyMethod();
+//    build.AllowAnyHeader();
+//}));
+//services cors
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
-    build.WithOrigins("https://salmon-sand-00f744b10.3.azurestaticapps.net/");
-    build.AllowAnyMethod();
-    build.AllowAnyHeader();
+    builder.WithOrigins("https://salmon-sand-00f744b10.3.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader();
 }));
 
 var app = builder.Build();
@@ -37,9 +42,10 @@ var app = builder.Build();
 
     app.UseHttpsRedirection();
 
-    app.UseCors();
+//app.UseCors();
+app.UseCors("corsapp");
 
-    app.UseAuthorization();
+app.UseAuthorization();
 
     app.MapControllers();
 
